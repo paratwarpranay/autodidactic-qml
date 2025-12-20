@@ -1,0 +1,58 @@
+cff-version: 1.2.0
+message: "If you use this software, please cite it as below."
+title: "Autodidactic QML Loop Falsifier"
+authors:
+  - family-names: Altman
+    given-names: Christopher
+version: "0.1.0"
+date-released: 2025-12-17
+url: "https://github.com/christopher-altman/autodidactic-qml"
+license: MIT
+keywords:
+  - quantum machine learning
+  - autodidactic systems
+  - matrix models
+  - emergent laws
+  - quantum neural networks
+  - adaptive quantum networks
+  - phase transitions
+
+references:
+  - type: article
+    title: "The Autodidactic Universe"
+    authors:
+      - family-names: Smolin
+        given-names: Lee
+    year: 2021
+    doi: "10.48550/arXiv.2104.03902"
+    url: "https://arxiv.org/abs/2104.03902"
+
+  - type: article
+    title: "Superposed Quantum Network Topologies"
+    authors:
+      - family-names: Altman
+        given-names: Christopher
+      - family-names: Pykacz
+        given-names: Jarosław
+      - family-names: Zapatrin
+        given-names: Roman
+    journal: "International Journal of Theoretical Physics"
+    volume: 43
+    pages: "2029–2041"
+    year: 2004
+    doi: "10.1023/B:IJTP.0000049008.51567.ec"
+    url: "https://ui.adsabs.harvard.edu/abs/2004IJTP...43.2029A/abstract"
+
+  - type: article
+    title: "Backpropagation in Adaptive Quantum Networks"
+    authors:
+      - family-names: Altman
+        given-names: Christopher
+      - family-names: Zapatrin
+        given-names: Roman
+    journal: "International Journal of Theoretical Physics"
+    volume: 49
+    pages: "2991–2997"
+    year: 2010
+    doi: "10.1007/s10773-009-0103-1"
+    url: "https://arxiv.org/abs/0903.4416"
