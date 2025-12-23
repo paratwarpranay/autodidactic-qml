@@ -729,8 +729,16 @@ def main():
         args.step_envelope = False
         args.full_protocol = False
 
-    # Default to full protocol if nothing specified
-    if not any([args.run_decisive, args.k_step_curve, args.hysteresis, args.step_envelope, args.full_protocol, args.decoupling_analysis, args.negative_control]):
+    # Default: run full protocol if no mode flags were provided.
+    if not any([
+        args.run_decisive,
+        args.k_step_curve,
+        args.hysteresis,
+        args.step_envelope,
+        args.full_protocol,
+        args.decoupling_analysis,
+        args.negative_control,
+    ]):
         args.full_protocol = True
     
     verbose = not args.quiet
