@@ -467,7 +467,7 @@ pip install -r requirements.txt
 
 All decisive runs are deterministic from the given seeds.
 
-**Decisive seeds:** `perturb_seed=42`, `eval_seed=1337`, `recovery_seed=7`
+**Decisive seeds:** `PERTURB_SEED=42`, `EVAL_SEED=12345`, `RECOVERY_SEED=2025`
 
 ### 1. Run the decisive 1-step KT-2 test (recommended first)
 
