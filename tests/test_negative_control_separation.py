@@ -62,16 +62,33 @@ def test_negative_control_no_crash():
     model = create_model(seed=0, dim=12, hidden=64)
     result = run_negative_control(model, verbose=False)
 
-    # Verify structure
+    # Verify structure (legacy keys)
     assert "CI_proxy" in result
     assert "CI_distillation" in result
+    assert "distillation_succeeds" in result
     assert "control_passes" in result
+
+    # Verify structure (new Option B keys)
+    assert "CI_distill_eval" in result
+    assert "loss_distill_pre_train" in result
+    assert "loss_distill_post_train" in result
+    assert "distillation_improved_train" in result
+
+    # Verify backward compatibility (legacy keys match new keys)
+    assert abs(result["CI_distillation"] - result["CI_distill_eval"]) < 1e-12, \
+        "Legacy CI_distillation must equal CI_distill_eval"
+    assert result["distillation_succeeds"] == result["distillation_improved_train"], \
+        "Legacy distillation_succeeds must equal distillation_improved_train"
 
     # Verify no NaN (sign of numerical error)
     assert not torch.isnan(torch.tensor(result["CI_proxy"])), \
         "CI_proxy should not be NaN"
-    assert not torch.isnan(torch.tensor(result["CI_distillation"])), \
-        "CI_distillation should not be NaN"
+    assert not torch.isnan(torch.tensor(result["CI_distill_eval"])), \
+        "CI_distill_eval should not be NaN"
+    assert not torch.isnan(torch.tensor(result["loss_distill_pre_train"])), \
+        "loss_distill_pre_train should not be NaN"
+    assert not torch.isnan(torch.tensor(result["loss_distill_post_train"])), \
+        "loss_distill_post_train should not be NaN"
 
     # Verify losses are non-negative
     assert result["L_pre"] >= 0
@@ -273,8 +290,23 @@ def test_negative_control_completes_with_distinct_batches():
     
     assert success, "run_negative_control should complete when x_train != eval_ctx.eval_batch"
     
-    # Verify the function returned valid results
+    # Verify the function returned valid results (legacy keys)
     assert "CI_proxy" in result
     assert "CI_distillation" in result
+    assert "distillation_succeeds" in result
     assert "control_passes" in result
+
+    # Verify new Option B keys present
+    assert "CI_distill_eval" in result
+    assert "loss_distill_pre_train" in result
+    assert "loss_distill_post_train" in result
+    assert "distillation_improved_train" in result
+
+    # Verify backward compatibility
+    assert abs(result["CI_distillation"] - result["CI_distill_eval"]) < 1e-12
+    assert result["distillation_succeeds"] == result["distillation_improved_train"]
+
+    # Type checks
     assert isinstance(result["control_passes"], bool)
+    assert isinstance(result["distillation_improved_train"], bool)
+    assert isinstance(result["distillation_succeeds"], bool)

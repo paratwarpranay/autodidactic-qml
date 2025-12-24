@@ -6,6 +6,12 @@ Thumbs.db
 .vscode/
 .idea/
 
+# Local agent artifacts / reports
+.claude/
+KT2_*REPORT*.md
+KT2_*RCA*.md
+KT2_*GUARDRAILS*.md
+
 # ---- Python bytecode / caches ----
 __pycache__/
 *.py[cod]
