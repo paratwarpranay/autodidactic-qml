@@ -254,10 +254,12 @@ def test_negative_control_raises_on_train_eval_leakage():
     output_distill = model_distill(x_train)
     Y_distill = output_distill[0] if isinstance(output_distill, tuple) else output_distill
     
-    # Verify the assertion condition (line 367)
-    with pytest.raises(AssertionError, match="BUG: Distillation must train on x_train, not eval_ctx.eval_batch"):
-        assert not torch.equal(x_train, eval_ctx.eval_batch), \
-            "BUG: Distillation must train on x_train, not eval_ctx.eval_batch (data leakage)"
+    # Verify the runtime check (line 380)
+    with pytest.raises(RuntimeError, match="BUG: Distillation must train on x_train, not eval_ctx.eval_batch"):
+        if torch.equal(x_train, eval_ctx.eval_batch):
+            raise RuntimeError(
+                "BUG: Distillation must train on x_train, not eval_ctx.eval_batch (data leakage)"
+            )
 
 
 def test_negative_control_completes_with_distinct_batches():
@@ -278,15 +280,15 @@ def test_negative_control_completes_with_distinct_batches():
     
     model = create_model(seed=0, dim=12, hidden=64)
     
-    # Should complete without raising AssertionError
+    # Should complete without raising RuntimeError
     try:
         result = run_negative_control(model, verbose=False)
         success = True
-    except AssertionError as e:
+    except RuntimeError as e:
         if "BUG: Distillation must train on x_train" in str(e):
             success = False
         else:
-            raise  # Re-raise unexpected assertion errors
+            raise  # Re-raise unexpected runtime errors
     
     assert success, "run_negative_control should complete when x_train != eval_ctx.eval_batch"
     

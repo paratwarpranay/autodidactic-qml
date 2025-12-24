@@ -377,8 +377,10 @@ def run_negative_control(
         loss_distill_post_train = torch.mean((Y_distill_post - Y_pre) ** 2)
 
     # Verify no train/eval leakage
-    assert not torch.equal(x_train, eval_ctx.eval_batch), \
-        "BUG: Distillation must train on x_train, not eval_ctx.eval_batch (data leakage)"
+    if torch.equal(x_train, eval_ctx.eval_batch):
+        raise RuntimeError(
+            "BUG: Distillation must train on x_train, not eval_ctx.eval_batch (data leakage)"
+        )
 
     # Held-out eval CI (diagnostic, not gating)
     L_recover_distill = eval_ctx.evaluate_loss(model_distill)
