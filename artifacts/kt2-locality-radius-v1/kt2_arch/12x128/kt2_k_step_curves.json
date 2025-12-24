@@ -1,0 +1,245 @@
+{
+  "protocol_id": "KT-2",
+  "protocol_version": "1.0",
+  "test": "k_step_curve",
+  "git_hash": "e7057054661c",
+  "timestamp": "2025-12-24T17:06:07.529545",
+  "seeds": {
+    "perturb": 42,
+    "eval": 12345,
+    "recovery": 2025
+  },
+  "k_values": [
+    1,
+    2,
+    4,
+    8,
+    16
+  ],
+  "curves": {
+    "none": {
+      "k_values": [
+        1,
+        2,
+        4,
+        8,
+        16
+      ],
+      "ci_values": [
+        0.009837456218103242,
+        0.024675505306612056,
+        0.04353177012927904,
+        0.07991876266483941,
+        0.13925409732175997
+      ],
+      "triads": [
+        {
+          "param_distance": 6.5326063093434295,
+          "repr_distance": 0.9993218095041811,
+          "functional_distance": 0.9901625437818967,
+          "invariant_distance": 35.07972122417066,
+          "ci_score": 0.00983745621810328
+        },
+        {
+          "param_distance": 6.532559734161831,
+          "repr_distance": 0.998184880707413,
+          "functional_distance": 0.975324494693388,
+          "invariant_distance": 35.0778320003879,
+          "ci_score": 0.024675505306612
+        },
+        {
+          "param_distance": 6.532427970186539,
+          "repr_distance": 0.9964699186384678,
+          "functional_distance": 0.956468229870721,
+          "invariant_distance": 35.07423672895139,
+          "ci_score": 0.043531770129279
+        },
+        {
+          "param_distance": 6.532178773061064,
+          "repr_distance": 0.9981610248796642,
+          "functional_distance": 0.9200812373351606,
+          "invariant_distance": 35.071170256823876,
+          "ci_score": 0.07991876266483944
+        },
+        {
+          "param_distance": 6.531945499074597,
+          "repr_distance": 0.9967788700014353,
+          "functional_distance": 0.86074590267824,
+          "invariant_distance": 35.065783769316624,
+          "ci_score": 0.13925409732175997
+        }
+      ],
+      "local_recovery": false,
+      "recovery_onset_k": 16,
+      "saturation_ci": 0.13925409732175997
+    },
+    "scale": {
+      "k_values": [
+        1,
+        2,
+        4,
+        8,
+        16
+      ],
+      "ci_values": [
+        0.010004118209874565,
+        0.025684763409274176,
+        0.04187394761875608,
+        0.0656764324479443,
+        0.1325653186674039
+      ],
+      "triads": [
+        {
+          "param_distance": 6.517883775016628,
+          "repr_distance": 0.9990144930779934,
+          "functional_distance": 0.9899958817901254,
+          "invariant_distance": 34.7581216584576,
+          "ci_score": 0.010004118209874568
+        },
+        {
+          "param_distance": 6.503518715160556,
+          "repr_distance": 0.9982853196561337,
+          "functional_distance": 0.9743152365907258,
+          "invariant_distance": 34.445697747673265,
+          "ci_score": 0.02568476340927417
+        },
+        {
+          "param_distance": 6.4751066601500975,
+          "repr_distance": 0.9954441376030445,
+          "functional_distance": 0.9581260523812439,
+          "invariant_distance": 33.82753527999578,
+          "ci_score": 0.04187394761875607
+        },
+        {
+          "param_distance": 6.419130457281357,
+          "repr_distance": 0.9925617938861251,
+          "functional_distance": 0.9343235675520557,
+          "invariant_distance": 32.61662059543617,
+          "ci_score": 0.0656764324479443
+        },
+        {
+          "param_distance": 6.311868610217158,
+          "repr_distance": 0.9960715984925628,
+          "functional_distance": 0.8674346813325962,
+          "invariant_distance": 30.32053889333525,
+          "ci_score": 0.13256531866740384
+        }
+      ],
+      "local_recovery": false,
+      "recovery_onset_k": 16,
+      "saturation_ci": 0.1325653186674039
+    },
+    "shape": {
+      "k_values": [
+        1,
+        2,
+        4,
+        8,
+        16
+      ],
+      "ci_values": [
+        0.010004240396085542,
+        0.0256846412230632,
+        0.041874436363599984,
+        0.06567686009968272,
+        0.1325632415018173
+      ],
+      "triads": [
+        {
+          "param_distance": 6.517883775016628,
+          "repr_distance": 0.9990145275369287,
+          "functional_distance": 0.9899957596039145,
+          "invariant_distance": 34.75819574401635,
+          "ci_score": 0.010004240396085495
+        },
+        {
+          "param_distance": 6.503518715160556,
+          "repr_distance": 0.9982853448018432,
+          "functional_distance": 0.9743153587769368,
+          "invariant_distance": 34.445772457106266,
+          "ci_score": 0.025684641223063243
+        },
+        {
+          "param_distance": 6.4751066601500975,
+          "repr_distance": 0.9954440509900451,
+          "functional_distance": 0.9581255636364,
+          "invariant_distance": 33.82761140147703,
+          "ci_score": 0.0418744363636
+        },
+        {
+          "param_distance": 6.419130457281357,
+          "repr_distance": 0.992561548948288,
+          "functional_distance": 0.9343231399003172,
+          "invariant_distance": 32.61669750938208,
+          "ci_score": 0.06567686009968277
+        },
+        {
+          "param_distance": 6.311868610217158,
+          "repr_distance": 0.996073798276484,
+          "functional_distance": 0.8674367584981827,
+          "invariant_distance": 30.3206241764737,
+          "ci_score": 0.1325632415018173
+        }
+      ],
+      "local_recovery": false,
+      "recovery_onset_k": 16,
+      "saturation_ci": 0.1325632415018173
+    },
+    "direct": {
+      "k_values": [
+        1,
+        2,
+        4,
+        8,
+        16
+      ],
+      "ci_values": [
+        0.009837456218103242,
+        0.024675505306612056,
+        0.04353177012927904,
+        0.07991876266483941,
+        0.13925409732175997
+      ],
+      "triads": [
+        {
+          "param_distance": 6.5326063093434295,
+          "repr_distance": 0.9993218095041811,
+          "functional_distance": 0.9901625437818967,
+          "invariant_distance": 35.07972122417066,
+          "ci_score": 0.00983745621810328
+        },
+        {
+          "param_distance": 6.532559734161831,
+          "repr_distance": 0.998184880707413,
+          "functional_distance": 0.975324494693388,
+          "invariant_distance": 35.0778320003879,
+          "ci_score": 0.024675505306612
+        },
+        {
+          "param_distance": 6.532427970186539,
+          "repr_distance": 0.9964699186384678,
+          "functional_distance": 0.956468229870721,
+          "invariant_distance": 35.07423672895139,
+          "ci_score": 0.043531770129279
+        },
+        {
+          "param_distance": 6.532178773061064,
+          "repr_distance": 0.9981610248796642,
+          "functional_distance": 0.9200812373351606,
+          "invariant_distance": 35.071170256823876,
+          "ci_score": 0.07991876266483944
+        },
+        {
+          "param_distance": 6.531945499074597,
+          "repr_distance": 0.9967788700014353,
+          "functional_distance": 0.86074590267824,
+          "invariant_distance": 35.065783769316624,
+          "ci_score": 0.13925409732175997
+        }
+      ],
+      "local_recovery": false,
+      "recovery_onset_k": 16,
+      "saturation_ci": 0.13925409732175997
+    }
+  }
+}
