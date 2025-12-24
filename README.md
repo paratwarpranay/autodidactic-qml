@@ -485,6 +485,10 @@ Tests the decisive result across 30 runs (3 dimensions × 10 seeds) to demonstra
 
 ### 1c. Negative control (harness can recover when optimizing for function)
 
+Note: this negative control now checks **1-step in-batch distillation MSE improvement** as the pass criterion (sanity), while reporting held-out **eval CI as diagnostic only**.
+The anti-leak unit tests are designed to be **stable/signature-agnostic** (no fragile call-order assumptions).
+
+
 ```bash
 python -m experiments.kt2_locality_falsifier --negative-control
 ```

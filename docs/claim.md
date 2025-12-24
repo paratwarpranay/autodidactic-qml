@@ -57,6 +57,13 @@ All values defined as constants in `experiments/kt2_locality_falsifier.py`: `PER
 
 ## Primary Test Definition
 
+
+### Negative control semantics (sanity check)
+
+The KT-2 **negative control** is a harness sanity check: it verifies that a *direct* functional optimization step can improve alignment on the **train batch** (1-step in-batch distillation MSE to PRE outputs) while proxy-constrained recovery still fails. The held-out evaluation CI is reported as **diagnostic only** (not gating), to avoid accidental train/eval leakage and to keep the control’s meaning stable.
+
+The accompanying unit tests are intentionally **signature-agnostic and stable**: they do not rely on internal call counts or model internals, only on protocol invariants (seed separation, guard behavior, and core result keys).
+
 The primary test implements the KT-2 protocol with k=1 (single recovery step):
 
 1. Train model to PRE state (converged autodidactic loop)
