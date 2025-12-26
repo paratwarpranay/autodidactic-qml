@@ -14,9 +14,6 @@
 [![LinkedIn](https://img.shields.io/badge/LinkedIn-Christopher%20Altman-blue?logo=linkedin&logoColor=white)](https://www.linkedin.com/in/Altman)
 <!-- [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.XXXXXXX.svg)](https://doi.org/10.5281/zenodo.XXXXXXX) -->
 
-
-
-
 <br>
 
 > **TL;DR:** Geometric proximity ≠ functional proximity. This repository provides reproducible evidence that restoring local parameter/representation/gradient structure does not restore behavior in neural networks.
@@ -30,7 +27,6 @@
 ```bash
 pip install -e . && python -m experiments.kt2_locality_falsifier --run-decisive --quiet
 ```
-
 
 <details>
 <summary><b>Executive Summary</b> (click to expand)</summary>
@@ -49,7 +45,6 @@ pip install -e . && python -m experiments.kt2_locality_falsifier --run-decisive 
 
 <br>
 
-
 ## Headline Result
 
 **Geometric basins are not functional basins.**
@@ -58,9 +53,7 @@ In this system, functional identity is not locally recoverable—at 0th order (w
 
 This is a **designed falsifier**: fixed protocol, fixed seeds, no hyperparameter sweeps, and no degrees of freedom left to absorb failure.
 
-
 ---
-
 
 ## Abstract
 
@@ -86,7 +79,6 @@ We study whether functional identity is locally recoverable after perturbation i
 - [Constraint Families Tested](#constraint-families-tested)
 - [Installation](#installation)
 - [Reproducing the Decisive Experiments](#reproducing-the-decisive-experiments)
-- [Quickstart](#quickstart)
 - [Reproducibility](#reproducibility)
 - [Interpretation Guide](#interpretation-guide)
 - [FAQ](#faq)
@@ -114,7 +106,7 @@ The **Superpositional Quantum Network Topologies (SQNT)**-inspired matrix loop s
 
 The recovery statistic is **Continuation Interest (CI):**
 
-CI = (L_post − L_recover) / (L_post − L_pre)
+> CI = (L_post − L_recover) / (L_post − L_pre)
 
 CI is a normalized recovery ratio. It is not a claim about motivation or agency; it is a claim about **local vector-field alignment** between constraint restoration and functional restoration.
 
@@ -149,10 +141,45 @@ A deterministic **PRE → POST → RECOVER** pipeline with fixed seeds implement
 
 ## Autodidactic Loop Schematic
 
-*Text-only schematic (for terminals and diffs; includes the KT-2 evaluation wrapper):*
+*The schematic shows the core autodidactic loop; the text-only schematic below includes the KT-2 evaluation wrapper.*
 
+![Autodidactic Loop: recursive self-learning from measurement and state](autodidactic_loop_schematic.png)
+
+<details>
+<summary><b>Mermaid diagram (GitHub-rendered)</b></summary>
+
+```mermaid
+graph TD
+  W["Matrix / State W\n(Hermitian)"]
+  CM["Correspondence Map\nW → RNN params"]
+  LI["Learner Instantiation\n(Cyclic RNN)"]
+  AT["Autodidactic Training\nmeasure → loss → update"]
+  AU["Autodidactic Update\nΔW"]
+
+  W --> CM
+  CM --> LI
+  LI --> AT
+  AT --> AU
+  AU -. feedback .-> W
+
+  AU --> KT2START["KT-2 Evaluation Wrapper"]
+  KT2START --> WP["PRE anchor\nW_pre"]
+  WP --> PI["Perturbation Π\n(intervention)"]
+  PI --> WO["POST state\nW_post"]
+  WO --> CR["Constrained recovery\nminimize L + Σ λ_j C_j(·, W_pre)"]
+  CR --> WR["RECOVER state\nW_rec"]
+  WR --> CI["CI metric\nCI = (L_post − L_rec)/(L_post − L_pre)"]
+
+  style W fill:#e1f5ff
+  style KT2START fill:#fff9e6
+  style CI fill:#e8f5e9
 ```
 
+</details>
+
+*Text-only schematic (for terminals and diffs; includes the KT-2 evaluation wrapper):*
+
+```text
   ┌────────────────────────┐
   │   Matrix / State (W)   │
   │      (Hermitian)       │
@@ -210,10 +237,6 @@ A deterministic **PRE → POST → RECOVER** pipeline with fixed seeds implement
      │  Evaluation        │   CI = (L_post - L_rec)/(L_post - L_pre)
      └───────────────────┘
 ```
-
-*The schematic below shows the core autodidactic loop; the text-only schematic above includes the KT-2 evaluation wrapper.*
-
-![Autodidactic Loop: recursive self-learning from measurement and state](autodidactic_loop_schematic.png)
 
 **Figure 1.** Conceptual schematic of the autodidactic learning loop. A system state (matrix or state vector) is mapped to measured observables via a correspondence map. These observables drive a learner (classical or quantum), whose update rule modifies the underlying state. The loop closes under measurement, enforcing constraint invariance across iterations.
 
@@ -323,7 +346,7 @@ A **1-step recovery test** probes what is truly *local*: the update direction in
 A **k-step curve** tests whether recovery is path-dependent rather than local:
 
 - CI(1) ≈ 0 but CI(k) rises at larger k → recovery is nonlocal / requires trajectory
-- CI(k) ≈ 0 for all k → no recoverable basin under the tested constraints
+- CI(k) ≈ 0 for all k tested → no recoverable basin under the tested constraints
 
 Practically, this matters for:
 
@@ -372,7 +395,7 @@ This removes the objection “maybe you picked a bad learning rate” while pres
 
 ### UCIP: Persistence-Bias Probes
 
-This repository also includes an optional set of UCIP (Unified Continuation-Interest Protocol) probes: a falsification framework for detecting persistence-bias / identity-continuity bias signals in minimal decision systems with explicit self-model machinery.
+This repository also includes an optional set of UCIP (Unified Continuation-Interest Protocol) probes: a falsification framework for detecting persistence-bias / identity-continuity bias signals in minimal decision systems with explicit internal self-model machinery.
 
 UCIP is strictly operational: it tests whether a system’s scoring/utility computation exhibits an identity-continuity preference signal under interventions (i.e., whether internal identity overlap is measurably favored by the objective). This is not a claim about desire, selfhood, consciousness, or moral status—only about reproducible, preference-like behavior defined by the protocol.
 
@@ -436,14 +459,14 @@ $$
 
 $$
 C_J(W, W_{\mathrm{pre}}) =
-1 - \cos\!\left(\mathrm{vec}(J_W(x_{\mathrm{pre}})),\, \mathrm{vec}(J_{W_{\mathrm{pre}}}(x_{\mathrm{pre}}))\right)
+1 - \cos\left(\mathrm{vec}(J_W(x_{\mathrm{pre}})),\, \mathrm{vec}(J_{W_{\mathrm{pre}}}(x_{\mathrm{pre}}))\right)
 $$
 
 **(5) Second-order local curvature (Hessian–vector product alignment along probe direction v):**
 
 $$
-C_{\mathrm{HVP}}(W, W_{\mathrm{pre}}) =
-1 - \cos\!\left(H_W v,\, H_{W_{\mathrm{pre}}} v\right)
+C_{\mathrm{HVP}}(W, W_{\mathrm{pre}})
+= 1 - \cos\left(H_W v, H_{W_{\mathrm{pre}}} v\right)
 $$
 
 These penalties are **proxies**: they enforce local geometry / representation / derivative similarity around the PRE anchor.
@@ -523,7 +546,7 @@ Tests the decisive result across 30 runs (3 dimensions × 10 seeds) to demonstra
 
 ### 1c. Negative control (harness can recover when optimizing for function)
 
-Note: this negative control now checks **1-step in-batch distillation MSE improvement** as the pass criterion (sanity), while reporting held-out **eval CI as diagnostic only**.
+Note: this negative control checks **1-step in-batch distillation MSE improvement** as the pass criterion (sanity), while reporting held-out **eval CI as diagnostic only**.
 The anti-leak unit tests are designed to be **stable/signature-agnostic** (no fragile call-order assumptions).
 
 ```bash
@@ -573,34 +596,6 @@ python -m experiments.kt2_locality_falsifier --decoupling-analysis
 **Expected artifact:** `results/kt2_decoupling.json`
 
 ### 7. Optional: UCIP probes
-
-```bash
-python -m experiments.ucip_probes
-```
-
----
-
-## Quickstart
-
-1. Create environment and install:
-
-```bash
-pip install -r requirements.txt
-```
-
-2. Run the decisive KT-2 experiment:
-
-```bash
-python -m experiments.kt2_locality_falsifier --run-decisive
-```
-
-3. (Optional) Remove the “bad learning rate” objection:
-
-```bash
-python -m experiments.kt2_locality_falsifier --step-envelope
-```
-
-4. (Optional) Run UCIP probes:
 
 ```bash
 python -m experiments.ucip_probes
@@ -676,7 +671,6 @@ autodidactic-qml/
 ├── tests/
 ├── notebooks/
 └── results/
-
 ```
 
 ---
@@ -712,7 +706,7 @@ $$
 L_{\text{total}} = L_{\text{task}} + \lambda \sum_k \left(I_k(\theta_t)-I_k(\theta_{\text{pre}})\right)^2
 $$
 
-This does not “pick the answer” ; it enforces return to a declared equivalence class. If CI rises substantially, invariants are acting as a stability scaffold. If CI stays ~0, the nonlocality claim strengthens.
+This does not “pick the answer”; it enforces return to a declared equivalence class. If CI rises substantially, invariants are acting as a stability scaffold. If CI stays ~0, the nonlocality claim strengthens.
 
 ### 3. Architecture Contact Test (Minimal Transformer)
 
@@ -726,7 +720,7 @@ Treat diffusion purification as the recovery step and define “function” expl
 
 ## References
 
-1. C. Altman, J. Pykacz & R. Zapatrin, “Superpositional Quantum Network Topologies,” *International Journal of Theoretical Physics* 43, 2029–2041 (2004).
+1. C. Altman, J. Pykacz & R. Zapatrin, “Superpositional Quantum Network Topologies,” *International Journal of Theoretical Physics* 43, 2029–2041 (2004).  
    DOI: [10.1023/B:IJTP.0000049008.51567.ec](https://doi.org/10.1023/B:IJTP.0000049008.51567.ec) · arXiv: [q-bio/0311016](https://arxiv.org/abs/q-bio/0311016)
 
 2. C. Altman & R. Zapatrin, “Backpropagation in Adaptive Quantum Networks,” *International Journal of Theoretical Physics* 49, 2991–2997 (2010).  
