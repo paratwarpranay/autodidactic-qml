@@ -78,3 +78,10 @@ KT2_REVIEW_PROOF_PATCH.md
 # Local-only files (do not track)
 .mailmap
 scripts/
+
+# local tooling (never commit)
+tools/
+
+# local git hooks / tooling
+.githooks/
+.githook/
